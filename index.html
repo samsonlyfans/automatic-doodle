@@ -1,0 +1,549 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MU SHOPPING - Comrades Favourite Shop</title>
+    <style>
+        :root {
+            --primary-color: #4a148c;
+            --secondary-color: #7b1fa2;
+            --accent-color: #e91e63;
+            --light-color: #f3e5f5;
+            --dark-color: #12005e;
+        }
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+       
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+       
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+       
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+       
+        .logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+       
+        .cart-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+       
+        .grad-cap {
+            position: absolute;
+            top: -15px;
+            font-size: 30px;
+            color: var(--dark-color);
+        }
+       
+        .motto {
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--light-color);
+        }
+       
+        nav {
+            background-color: var(--dark-color);
+            padding: 0.8rem 0;
+        }
+       
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+       
+        nav li {
+            margin: 0 1.5rem;
+        }
+       
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+       
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+       
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem;
+            background-color: var(--light-color);
+        }
+       
+        .search-bar {
+            width: 60%;
+            max-width: 600px;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+       
+        .search-bar:focus {
+            outline: 2px solid var(--accent-color);
+        }
+       
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+       
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+       
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+       
+        .category-img {
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+       
+        .category-info {
+            padding: 1.5rem;
+        }
+       
+        .category-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+       
+        .category-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+       
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+       
+        .btn:hover {
+            background-color: #c2185b;
+        }
+       
+        .featured-products {
+            padding: 2rem;
+            background-color: var(--light-color);
+        }
+       
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+       
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto 0;
+        }
+       
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+       
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+       
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+       
+        .product-img {
+            height: 180px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+       
+        .product-info {
+            padding: 1.2rem;
+        }
+       
+        .product-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+       
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.8rem;
+        }
+       
+        .add-to-cart {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+       
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+       
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+       
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+       
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+       
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+       
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+       
+        .developer {
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+       
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+           
+            nav li {
+                margin: 0.5rem 0;
+            }
+           
+            .search-bar {
+                width: 90%;
+            }
+           
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <i class="fas fa-graduation-cap grad-cap"></i>
+            </div>
+            <h1>MU SHOPPING</h1>
+        </div>
+        <p class="motto">Comrades Favourite Shop</p>
+    </header>
+   
+    <nav>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-list"></i> Categories</a></li>
+            <li><a href="#"><i class="fas fa-fire"></i> Deals</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Account</a></li>
+        </ul>
+    </nav>
+   
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search for products...">
+    </div>
+   
+    <section class="categories">
+        <div class="category-card">
+            <div class="category-img" style="background-color: #FFF8E1;">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="category-info">
+                <h3>Groceries</h3>
+                <p>Fresh produce, pantry staples, and more</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #E8F5E9;">
+                <i class="fas fa-wine-bottle"></i>
+            </div>
+            <div class="category-info">
+                <h3>Beverages</h3>
+                <p>Soft drinks, juices, alcohol, and more</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #E3F2FD;">
+                <i class="fas fa-pump-medical"></i>
+            </div>
+            <div class="category-info">
+                <h3>Health & Beauty</h3>
+                <p>Cosmetics, personal care, and pharmacy</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #F3E5F5;">
+                <i class="fas fa-baby"></i>
+            </div>
+            <div class="category-info">
+                <h3>Baby Products</h3>
+                <p>Diapers, formula, toys, and more</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #FFEBEE;">
+                <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <div class="category-info">
+                <h3>Meat & Poultry</h3>
+                <p>Fresh and frozen meat products</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #E0F7FA;">
+                <i class="fas fa-ice-cream"></i>
+            </div>
+            <div class="category-info">
+                <h3>Frozen Foods</h3>
+                <p>Ice cream, frozen meals, and more</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #FFFDE7;">
+                <i class="fas fa-paw"></i>
+            </div>
+            <div class="category-info">
+                <h3>Pet Supplies</h3>
+                <p>Food, toys, and accessories for pets</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+       
+        <div class="category-card">
+            <div class="category-img" style="background-color: #F5F5F5;">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="category-info">
+                <h3>Household</h3>
+                <p>Cleaning supplies and home essentials</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+   
+    <section class="featured-products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-color: #FFF3E0;">
+                    <i class="fas fa-wine-bottle"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Premium Olive Oil</h4>
+                    <p class="price">$8.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+           
+            <div class="product-card">
+                <div class="product-img" style="background-color: #E8F5E9;">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Organic Apples</h4>
+                    <p class="price">$2.49/lb</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+           
+            <div class="product-card">
+                <div class="product-img" style="background-color: #E1F5FE;">
+                    <i class="fas fa-wine-bottle"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Mineral Water</h4>
+                    <p class="price">$1.29</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+           
+            <div class="product-card">
+                <div class="product-img" style="background-color: #F3E5F5;">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Whole Grain Bread</h4>
+                    <p class="price">$3.49</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+           
+            <div class="product-card">
+                <div class="product-img" style="background-color: #FFEBEE;">
+                    <i class="fas fa-drumstick-bite"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Chicken Breast</h4>
+                    <p class="price">$5.99/lb</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+           
+            <div class="product-card">
+                <div class="product-img" style="background-color: #FFF8E1;">
+                    <i class="fas fa-cheese"></i>
+                </div>
+                <div class="product-info">
+                    <h4>Cheddar Cheese</h4>
+                    <p class="price">$4.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <footer>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">FAQs</a>
+        </div>
+        <p class="copyright">© 2023 MU SHOPPING. All rights reserved.</p>
+        <p class="developer">Developed by Eugene Sam</p>
+    </footer>
+   
+    <script>
+        // Simple JavaScript for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+           
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.parentElement.querySelector('h4').textContent;
+                    const productPrice = this.parentElement.querySelector('.price').textContent;
+                   
+                    alert(`Added to cart: ${productName} - ${productPrice}`);
+                   
+                    // In a real application, you would add the item to a cart array or send to server
+                });
+            });
+           
+            // Search functionality
+            const searchBar = document.querySelector('.search-bar');
+           
+            searchBar.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = this.value;
+                    if (searchTerm.trim() !== '') {
+                        alert(`Searching for: ${searchTerm}`);
+                        // In a real application, you would filter products or make an API call
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
